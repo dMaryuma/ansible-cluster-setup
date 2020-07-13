@@ -1,38 +1,25 @@
-Role Name
-=========
+# ansible-cluster-setup
+ Ansible Cluster Setup for OnTap 9.6+
 
-A brief description of the role goes here.
+Intro & Requirements:
+A 0-day cluster setup and configuration with REST and Ansible.
+The scripts consists of 2 playbooks:
+	1. Cluster Setup using REST API (supported from OnTap 9.6+). 
+	2. Cluster Configuration supported from OnTap 9.1+)
+	
+To run this script you will need :
 
-Requirements
-------------
+- Linux server (we've tested on CentOS 7.6)
+- Ansible installed (2.6+)
+- pyhton3. 
+- NetApp Ansible Modules (netapp-lib 2008.11.13):
+	• Install using ‘pip3 install netapp-lib’
+	• Download from: https://pypi.org/project/netapp-lib/
+- NetApp collections:
+	• sudo ansible-galaxy collection install netapp.ontap -p /usr/share/ansible/collections
+- ONTAP 9.6+
+- Run the 'node-mgmt' setup (only setting an IP for the node mgmt. - not 'cluster setup' wizard)
+- Set the admin password
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Configuration files - edit this files for your cluster configuration:
+-ansible_playbook/vars/main.yaml
