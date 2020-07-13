@@ -31,20 +31,20 @@
 
   - name: Rename node1
     na_ontap_command:
-        hostname: "{{ hostname }}"
+        hostname: "{{ hosts['node1'].ip }}"
         command: ['node', 'rename', '-node', '*1', '-newname', "{{ hosts['node1'].name }}"]
         <<: *login
 
 
   - name: Rename node2
     na_ontap_command:
-        hostname: "{{ hostname }}"
+        hostname: "{{ hosts['node2'].ip }}"
         command: ['node', 'rename', '-node', '*2', '-newname', "{{ hosts['node2'].name }}"]
         <<: *login
 
   - name: Rename Cluster
     na_ontap_command:
-        hostname: "{{ hostname }}"
+        hostname: "{{ hosts['node1'].ip }}"
         command: ['cluster', 'identity', 'modify', '-name', "{{ cluster }}"]
         <<: *login
 
